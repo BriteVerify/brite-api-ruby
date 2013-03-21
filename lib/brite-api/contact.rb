@@ -16,7 +16,7 @@ module BriteAPI
       end
     end
 
-    def initialize(api_key, options, data = {})
+    def initialize(api_key, options = {}, data = {})
       @api_key = api_key
       @options = options
       @data = {}
