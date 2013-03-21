@@ -20,7 +20,7 @@ module BriteAPI
       @api_key = api_key
       @options = options
       @data = {}
-      data.each { |k, v| @data[k.to_sym] = v }
+      FIELDS.each { |key| @data[key] = data[key] || data[key.to_s] }
 
       @response = {}
     end
