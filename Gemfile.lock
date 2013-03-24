@@ -16,6 +16,7 @@ GEM
     json (1.7.7)
     metaclass (0.0.1)
     mime-types (1.21)
+    minitest (3.5.0)
     mocha (0.12.7)
       metaclass (~> 0.0.1)
     multi_json (1.7.1)
@@ -46,6 +47,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (> 1.0.0)
   jeweler (~> 1.8.4)
+  minitest (= 3.5.0)
   rdoc (~> 3.12)
   rest (~> 2.2.0)
   shoulda
