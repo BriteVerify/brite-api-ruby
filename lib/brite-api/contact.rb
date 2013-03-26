@@ -17,6 +17,7 @@ module BriteAPI
     end
 
     def initialize(api_key, options = {}, data = {})
+      raise ArgumentError, "Missing BriteVerify API key" if api_key.nil? || api_key == ''
       @api_key = api_key
       @options = options
       @data = {}
@@ -42,7 +43,7 @@ module BriteAPI
 
       threads.each { |thr| thr.join }
 
-      valid?
+      self
     end
 
     def valid?
@@ -54,7 +55,7 @@ module BriteAPI
       return if @response == {}
       states = ['valid', 'unknown', 'invalid']
       states.each_with_index do |state, index|
-        return state if @response.all?{ |_, data| states[0, index].include? data['status'] }
+        return state if @response.all?{ |_, data| states[0, index + 1].include? data['status'] }
       end
       'unknown'
     end
@@ -68,7 +69,7 @@ module BriteAPI
     end
 
     def error_codes
-      @response.map{ |_, data| data['error_code'] }.compact
+      @response.map{ |_, data| data['error_code'] }.compact.uniq
     end
 
   end

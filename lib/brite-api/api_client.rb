@@ -21,7 +21,6 @@ module BriteAPI
         :params => params.merge(:apikey => @api_key)
       }
 
-      puts "options: #{options.inspect}"
       JSON.parse @rest.get(url, options).body
     end
 
