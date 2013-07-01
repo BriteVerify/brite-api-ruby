@@ -1,3 +1,3 @@
 module BriteAPI
-  VERSION ||= File.read(File.dirname(__FILE__) + '/../../VERSION').strip
+  VERSION = '0.0.2'
 end
