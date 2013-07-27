@@ -31,17 +31,26 @@ module BriteAPI
 
       data = @data.select{ |_, v| v != nil }
 
-      # send async requests
-      threads = []
-      data.each do |key, value|
-
-        threads << Thread.new(key, value) do |k, v|
+      if data.size == 1
+        # optimization for single-threaded requests
+        data.each do |k, v|
           klass = BriteAPI.const_get(k.to_s.capitalize + "APIClient")
           @response[k] = klass.new(@api_key, @options).verify(v)
         end
+      else
+        # send async requests
+        threads = []
+        data.each do |key, value|
+
+          threads << Thread.new(key, value) do |k, v|
+            klass = BriteAPI.const_get(k.to_s.capitalize + "APIClient")
+            @response[k] = klass.new(@api_key, @options).verify(v)
+          end
+        end
+
+        threads.each { |thr| thr.join }
       end
 
-      threads.each { |thr| thr.join }
 
       self
     end
