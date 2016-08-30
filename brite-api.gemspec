@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = Gem::Requirement.new('>= 1.9')
 
 
-  gem.add_runtime_dependency 'rest', '~> 2.2.0'
+  gem.add_runtime_dependency 'rest', '~> 3.0.6'
 
   gem.add_development_dependency 'shoulda', '>= 0'
   gem.add_development_dependency 'rdoc', '~> 3.12'
